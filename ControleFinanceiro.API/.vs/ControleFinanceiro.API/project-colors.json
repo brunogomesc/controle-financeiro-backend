@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "944d6c9d-4d96-40ea-911d-7b12ff872ad8": {
+      "ProjectGuid": "944d6c9d-4d96-40ea-911d-7b12ff872ad8",
+      "DisplayName": "ControleFinanceiro.API",
+      "ColorIndex": 0
+    },
+    "7a1fc018-90ca-429a-be74-6c99b4300a42": {
+      "ProjectGuid": "7a1fc018-90ca-429a-be74-6c99b4300a42",
+      "DisplayName": "ControleFinanceiro.BLL",
+      "ColorIndex": 1
+    },
+    "c72e13d9-92b4-4090-aa02-b09682539b5a": {
+      "ProjectGuid": "c72e13d9-92b4-4090-aa02-b09682539b5a",
+      "DisplayName": "ControleFinanceiro.DAL",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
