@@ -6,6 +6,7 @@ using ControleFinanceiro.DAL;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ControleFinanceiro.DAL.Interfaces;
 
 namespace ControleFinanceiro.API.Controllers
 {
@@ -14,12 +15,12 @@ namespace ControleFinanceiro.API.Controllers
     public class CategoriesController : ControllerBase
     {
 
-        private readonly Context _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoriesController(Context context)
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
 
-            _context = context;
+            _categoryRepository = categoryRepository;
 
         }
 
@@ -28,7 +29,7 @@ namespace ControleFinanceiro.API.Controllers
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
 
-            return await _context.Categories.Include(c => c.Type).ToListAsync();
+            return await _categoryRepository.GetAll().ToListAsync();
 
         }
 
@@ -37,7 +38,7 @@ namespace ControleFinanceiro.API.Controllers
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
 
-            var categorie = await _context.Categories.FindAsync(id);
+            var categorie = await _categoryRepository.GetById(id);
 
             if(categorie == null)
             {
@@ -62,32 +63,17 @@ namespace ControleFinanceiro.API.Controllers
 
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
+            if(ModelState.IsValid)
             {
 
-                await _context.SaveChangesAsync();
+                await _categoryRepository.Update(category);
+                return Ok(new { 
+                    message = $"Categoria {category.Name} atualizado com sucesso!"
+                });
 
             }
-            catch (DbUpdateConcurrencyException)
-            {
 
-                if(!CategoryExists(id))
-                {
-
-                    return NotFound();
-
-                }
-                else
-                {
-
-                    throw;
-
-                }
-            }
-
-            return NoContent();
+            return BadRequest(ModelState);
 
         }
 
@@ -96,19 +82,27 @@ namespace ControleFinanceiro.API.Controllers
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
 
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            if(ModelState.IsValid)
+            {
 
-            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
+                await _categoryRepository.Insert(category);
+                return Ok(new
+                {
+                    message = $"Categoria {category.Name} criada com sucesso!"
+                });
+
+            }
+
+            return BadRequest(ModelState);
 
         }
 
         // DELETE: api/Categories/2
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<Category>> DeleteCategory(int id)
         {
 
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryRepository.GetById(id);
             if(category == null)
             {
 
@@ -116,18 +110,22 @@ namespace ControleFinanceiro.API.Controllers
 
             }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            await _categoryRepository.Delete(id);
 
-            return category;
-
-        }
-
-        private bool CategoryExists(int id)
-        {
-
-            return _context.Categories.Any(e => e.CategoryId == id);
+            return Ok(new
+            {
+                message = $"Categoria {category.Name} excluída com sucesso"
+            });
 
         }
+
+        // GET: api/FilterCategories/Shows
+        [HttpGet("FilterCategories/{nameCategory}")]
+        public async Task<ActionResult<IEnumerable<Category>>> FilterCategories(string nameCategory) {
+
+            return await _categoryRepository.FilterCategories(nameCategory).ToListAsync();
+        
+        }
+
     }
 }

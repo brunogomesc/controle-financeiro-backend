@@ -1,5 +1,7 @@
 using ControleFinanceiro.BLL.Models;
 using ControleFinanceiro.DAL;
+using ControleFinanceiro.DAL.Interfaces;
+using ControleFinanceiro.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionDB")));
 builder.Services.AddIdentity<User, Function>().AddEntityFrameworkStores<Context>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITypeRepository, TypeRepository>();
 builder.Services.AddCors();
 builder.Services.AddSpaStaticFiles(directory =>
 {

@@ -272,3 +272,8 @@ D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinance
 D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\refint\ControleFinanceiro.API.dll
+D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\staticwebassets\msbuild.ControleFinanceiro.API.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\staticwebassets\msbuild.build.ControleFinanceiro.API.props
+D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ControleFinanceiro.API.props
+D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ControleFinanceiro.API.props
+D:\Documentos\Projetos\ControleFinanceiro\ControleFinanceiro.API\ControleFinanceiro.API\obj\Debug\net6.0\staticwebassets.pack.json
